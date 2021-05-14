@@ -1,5 +1,6 @@
 <template>
   <div class="components-page-header">
+    <h1>element-ui-admin</h1>
     <slot />
     <div
       v-if="!isShowHelp"
@@ -99,6 +100,7 @@ export default {
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  margin-right: 30px;
 }
 </style>
 <style lang="less">
