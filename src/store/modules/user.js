@@ -1,49 +1,131 @@
-import ppo from 'ppo';
+import { login, logout, getInfo } from 'src/api/user'
+import { getToken, setToken, removeToken } from 'src/utils/auth'
+import router, { resetRouter } from 'src/router'
 
-/**
- * 用户数据状态管理
- */
 const state = {
-  token: '',
-  permissionsList: [],
-  userData: {
-    avatar: '',
-    level: '',
-    username: '',
-  },
-  AuthData: {
-    user: 'dravenwu',
-    icon: 'https://sf6-ttcdn-tos.pstatp.com/img/user-avatar/fdc4b296cebe55e27e522f32b2b8824b~300x300.image',
-  },
-  authority: true,
-};
-const actions = {
-  /**
-   * 设置是否能访问的权限
-   * @param commit
-   */
-  setAuthority({ commit }, userData) {
-    commit('setAuthority', userData);
-  },
-};
+  token: getToken(),
+  name: '',
+  avatar: '',
+  introduction: '',
+  roles: []
+}
+
 const mutations = {
-  /**
-   * 设置是否能访问的权限
-   * @param commit
-   */
-  setAuthority(state, data) {
-    state.authority = data;
-  }
-};
-const getters = {
-  userData(state) {
-    return state.userData;
+  SET_TOKEN: (state, token) => {
+    state.token = token
   },
-};
+  SET_INTRODUCTION: (state, introduction) => {
+    state.introduction = introduction
+  },
+  SET_NAME: (state, name) => {
+    state.name = name
+  },
+  SET_AVATAR: (state, avatar) => {
+    state.avatar = avatar
+  },
+  SET_ROLES: (state, roles) => {
+    state.roles = roles
+  }
+}
+
+const actions = {
+  // user login
+  login({ commit }, userInfo) {
+    const { username, password } = userInfo
+    return new Promise((resolve, reject) => {
+      login({ username: username.trim(), password: password }).then(response => {
+        const { data } = response
+        commit('SET_TOKEN', data.token)
+        setToken(data.token)
+        resolve()
+      }).catch(error => {
+        reject(error)
+      })
+    })
+  },
+
+  // get user info
+  getInfo({ commit, state }) {
+    return new Promise((resolve, reject) => {
+      getInfo(state.token).then(response => {
+        const { data } = response
+
+        if (!data) {
+          reject('Verification failed, please Login again.')
+        }
+
+        const { roles, name, avatar, introduction } = data
+
+        // roles must be a non-empty array
+        if (!roles || roles.length <= 0) {
+          reject('getInfo: roles must be a non-null array!')
+        }
+
+        commit('SET_ROLES', roles)
+        commit('SET_NAME', name)
+        commit('SET_AVATAR', avatar)
+        commit('SET_INTRODUCTION', introduction)
+        resolve(data)
+      }).catch(error => {
+        reject(error)
+      })
+    })
+  },
+
+  // user logout
+  logout({ commit, state, dispatch }) {
+    return new Promise((resolve, reject) => {
+      logout(state.token).then(() => {
+        commit('SET_TOKEN', '')
+        commit('SET_ROLES', [])
+        removeToken()
+        resetRouter()
+
+        // reset visited views and cached views
+        // to fixed https://github.com/PanJiaChen/vue-element-admin/issues/2485
+        dispatch('tagsView/delAllViews', null, { root: true })
+
+        resolve()
+      }).catch(error => {
+        reject(error)
+      })
+    })
+  },
+
+  // remove token
+  resetToken({ commit }) {
+    return new Promise(resolve => {
+      commit('SET_TOKEN', '')
+      commit('SET_ROLES', [])
+      removeToken()
+      resolve()
+    })
+  },
+
+  // dynamically modify permissions
+  async changeRoles({ commit, dispatch }, role) {
+    const token = role + '-token'
+
+    commit('SET_TOKEN', token)
+    setToken(token)
+
+    const { roles } = await dispatch('getInfo')
+
+    resetRouter()
+
+    // generate accessible routes map based on roles
+    const accessRoutes = await dispatch('permission/generateRoutes', roles, { root: true })
+    // dynamically add accessible routes
+    router.addRoutes(accessRoutes)
+
+    // reset visited views and cached views
+    dispatch('tagsView/delAllViews', null, { root: true })
+  }
+}
 
 export default {
+  namespaced: true,
   state,
-  getters,
-  actions,
   mutations,
-};
+  actions
+}

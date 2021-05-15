@@ -8,8 +8,12 @@ export default defineConfig({
   resolve: {
     alias: {
       'src': path.resolve(__dirname, './src/'),
+      'src/': path.resolve(__dirname, './src'),
     },
     // extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.vue'],
+  },
+  define: {
+    'process.env.VUE_APP_BASE_API': '"/dev-url"'
   },
   plugins: [
     createVuePlugin(),
