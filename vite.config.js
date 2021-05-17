@@ -15,7 +15,7 @@ export default defineConfig({
     // extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.vue'],
   },
   define: {
-    'process.env.VUE_APP_BASE_API': '"/dev-url"'
+    'process.env.VUE_APP_BASE_API': '"/vite-vue2-pro"'
   },
   plugins: [
     createVuePlugin(),
