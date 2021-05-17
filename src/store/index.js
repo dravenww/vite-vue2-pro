@@ -11,6 +11,5 @@ const store = new Vuex.Store({
   modules,
   getters
 })
-// console.log(window.a.b.c);
 
 export default store

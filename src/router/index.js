@@ -14,7 +14,6 @@ import nestedRouter from './modules/nested'
 
 /**
  * Note: sub-menu only appear when route children.length >= 1
- * Detail see: https://panjiachen.github.io/vue-element-admin-site/guide/essentials/router-and-nav.html
  *
  * hidden: true                   if set true, item will not show in the sidebar(default is false)
  * alwaysShow: true               if set true, will always show the root menu
@@ -132,7 +131,7 @@ export const asyncRoutes = [
   {
     path: '/permission',
     component: Layout,
-    redirect: '/permission/page',
+    redirect: 'PagePermission',
     alwaysShow: true, // will always show the root menu
     name: 'Permission',
     meta: {
@@ -377,7 +376,7 @@ export const asyncRoutes = [
     component: Layout,
     children: [
       {
-        path: 'https://github.com/PanJiaChen/vue-element-admin.vue',
+        path: 'http://dravenwu.top',
         meta: { title: '外部链接', icon: 'link' }
       }
     ]
@@ -388,7 +387,10 @@ export const asyncRoutes = [
 ]
 
 const createRouter = () => new Router({
-  mode: 'history', // require service support
+  // mode: 'history', // require service support
+  options: {
+    base: '/vite-vue2-pro/'
+  },
   scrollBehavior: () => ({ y: 0 }),
   routes: constantRoutes
 })
