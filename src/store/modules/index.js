@@ -3,7 +3,6 @@ import app from './app';
 import errorLog from './errorLog';
 import permission from './permission';
 import settings from './settings';
-import tagsView from './tagsView';
 
 export default {
   user,
@@ -11,5 +10,4 @@ export default {
   errorLog,
   permission,
   settings,
-  tagsView,
 }

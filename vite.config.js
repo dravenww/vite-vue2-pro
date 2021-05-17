@@ -2,6 +2,8 @@ import { defineConfig } from 'vite'
 import * as path from 'path'
 import { createVuePlugin } from 'vite-plugin-vue2'
 import esbuildPlugin from 'esbuild-plugin-vite-element-ui';
+import createSvgSpritePlugin from 'vite-plugin-svg-sprite';
+
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -17,6 +19,9 @@ export default defineConfig({
   },
   plugins: [
     createVuePlugin(),
+    createSvgSpritePlugin({
+      symbolId: 'icon-[name]',
+    }),
   ],
   optimizeDeps: {
     esbuildOptions: {

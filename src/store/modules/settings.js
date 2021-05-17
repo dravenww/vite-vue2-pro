@@ -1,10 +1,9 @@
-import variables from 'src/styles/element-variables.scss'
 import defaultSettings from 'src/settings'
 
 const { showSettings, tagsView, fixedHeader, sidebarLogo } = defaultSettings
 
 const state = {
-  theme: variables.theme,
+  theme: '#1890ff',
   showSettings: showSettings,
   tagsView: tagsView,
   fixedHeader: fixedHeader,
