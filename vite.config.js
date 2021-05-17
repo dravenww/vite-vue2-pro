@@ -7,6 +7,7 @@ import createSvgSpritePlugin from 'vite-plugin-svg-sprite';
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: '/vite-vue2-pro/',
   resolve: {
     alias: {
       'src': path.resolve(__dirname, './src/'),
