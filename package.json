@@ -37,14 +37,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:dravenww/vite-vue2-pro.git"
+    "url": "git@github.com:tnfe/vite-vue2-pro.git"
   },
   "author": "dravenww",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com:dravenww/vite-vue2-pro/issues"
+    "url": "https://github.com:tnfe/vite-vue2-pro/issues"
   },
-  "homepage": "https://dravenww.github.io/vite-vue2-pro",
+  "homepage": "https://tnfe.github.io/vite-vue2-pro",
   "devDependencies": {
     "esbuild-plugin-vite-element-ui": "^1.0.1",
     "jest": "^26.6.3",
