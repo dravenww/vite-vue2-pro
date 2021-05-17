@@ -1,0 +1,1 @@
+import{a as o}from"./runtime.ab1d906c.js";o('<symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" id="icon-chart"><path d="M0 54.857h36.571V128H0V54.857zM91.429 27.43H128V128H91.429V27.429zM45.714 0h36.572v128H45.714V0z" /></symbol>',"icon-chart");export default"icon-chart";
