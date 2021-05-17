@@ -30,10 +30,10 @@
           <router-link to="/">
             <el-dropdown-item>Dashboard</el-dropdown-item>
           </router-link>
-          <a target="_blank" href="https://github.com/dravenww/vite-vue2-pro">
+          <a target="_blank" href="https://github.com/tnfe/vite-vue2-pro">
             <el-dropdown-item>Github</el-dropdown-item>
           </a>
-          <a target="_blank" href="https://github.com/dravenww/vite-vue2-pro">
+          <a target="_blank" href="https://github.com/tnfe/vite-vue2-pro">
             <el-dropdown-item>Docs</el-dropdown-item>
           </a>
           <el-dropdown-item divided @click.native="logout">

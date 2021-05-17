@@ -29,7 +29,7 @@ export default {
   data() {
     return {
       activeName: 'directly',
-      inputData: 'https://github.com/dravenww/vite-vue2-pro'
+      inputData: 'https://github.com/tnfe/vite-vue2-pro'
     }
   },
   methods: {

@@ -1,5 +1,5 @@
 <template>
-  <a href="https://github.com/dravenww/vite-vue2-pro" target="_blank" class="github-corner" aria-label="View source on Github">
+  <a href="https://github.com/tnfe/vite-vue2-pro" target="_blank" class="github-corner" aria-label="View source on Github">
     <svg
       width="80"
       height="80"
