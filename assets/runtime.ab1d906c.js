@@ -1,0 +1,4 @@
+var e,t,o,n,d,s,i={exports:{}},l=i.exports=(t=[],o=document,n=o.documentElement.doScroll,d="DOMContentLoaded",(s=(n?/^loaded|^c/:/^loaded|^i|^c/).test(o.readyState))||o.addEventListener(d,e=function(){for(o.removeEventListener(d,e),s=1;e=t.shift();)e()}),function(e){s?setTimeout(e,0):t.push(e)});
+/*!
+  * domready (c) Dustin Diaz 2014 - License MIT
+  */const r=document,a=window._SVG_SPRITE_IDS_=window._SVG_SPRITE_IDS_||[];let c=null;function u(e,t){(a.indexOf(t)>-1||r.getElementById(t))&&console.warn(`Icon #${t} was duplicately registered. It must be globally unique.`),a.push(t),l((()=>{(c||(c=document.createElementNS("http://www.w3.org/2000/svg","svg"),c.style.position="absolute",c.style.width="0",c.style.height="0",r.body.insertBefore(c,r.body.firstChild)),c).insertAdjacentHTML("beforeend",e)}))}export{u as a};
