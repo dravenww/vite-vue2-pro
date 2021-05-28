@@ -19,7 +19,9 @@ export default defineConfig({
     'process.env.VUE_APP_BASE_API': '"/vite-vue2-pro"'
   },
   plugins: [
-    createVuePlugin(),
+    createVuePlugin({
+      jsx: true,
+    }),
     createSvgSpritePlugin({
       symbolId: 'icon-[name]',
     }),

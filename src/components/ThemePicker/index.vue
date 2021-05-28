@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import { version } from 'element-ui/package.json';
+import { version } from 'element-ui-es/package.json';
 const ORIGINAL_THEME = '#409EFF' // default color
 
 export default {
